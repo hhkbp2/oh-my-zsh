@@ -6,3 +6,5 @@ custom/example.zsh
 *.swp
 !custom/example.zshcache
 cache/
+themes/powerlevel9k
+themes/powerlevel10k
