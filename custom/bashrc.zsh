@@ -65,7 +65,7 @@ export LC_ALL
 TMPDIR=/tmp
 
 # add module path for python
-if [ -z "$PYTHONPATH" ]; then
+if [[ -z "$PYTHONPATH" ]]; then
     export PYTHONPATH=${HOME}/local/lib/python2.7/site-packages/
 else
     export PYTHONPATH=${HOME}/local/lib/python2.7/site-packages/:$PYTHONPATH
@@ -87,23 +87,23 @@ alias svnwhat="svn st | grep -v -e '^?'"
 alias svnview='svn diff | less'
 export SVN_EDITOR='vim'
 
-if [ "$(uname -s)" = "Linux" ]; then
-   # sun java
-   export JAVA_HOME=/usr/lib/jvm/jdk-7-oracle-x64/
-   export PATH=$PATH:$JAVA_HOME/bin
-   export CLASSPATH=$JAVA_HOME/lib/:$JAVA_HOME/jre/lib/
+if [[ "$(uname -s)" = "Linux" ]]; then
+    # sun java
+    if [[ -d /usr/lib/jvm/jdk-7-oracle-x64/ ]]; then
+        export JAVA_HOME=/usr/lib/jvm/jdk-7-oracle-x64/
+        export PATH="$PATH:$JAVA_HOME/bin"
+        export CLASSPATH=$JAVA_HOME/lib/:$JAVA_HOME/jre/lib/
+    fi
 
-   # go
-   export GOROOT=$HOME/local/opt/go
-   export PATH=$GOROOT/bin:$PATH
-
-   # texlive
-   export PATH=$HOME/local/opt/texlive/bin/x86_64-linux:$PATH
+    # texlive
+    if [[ -d "$HOME/local/opt/texlive/bin/x86_64-linux" ]]; then
+        export PATH="$HOME/local/opt/texlive/bin/x86_64-linux:$PATH"
+    fi
 fi
 
 # mac specified stuff
 os_type=$(uname -s)
-if [ "${os_type}" = 'Darwin' ]; then
+if [[ "${os_type}" = 'Darwin' ]]; then
     # use coreutils tools instead of the mac default freebsd one
     export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
     # use gnu sed
@@ -112,7 +112,7 @@ if [ "${os_type}" = 'Darwin' ]; then
     export PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
 
     # manpath settings
-    if [ -z $MANPATH ]; then
+    if [[ -z $MANPATH ]]; then
         export MANPATH="/usr/local/share/man:/usr/share/man"
     else
         export MANPATH="/usr/local/share/man:/usr/share/man:$MANPATH"
@@ -125,26 +125,66 @@ if [ "${os_type}" = 'Darwin' ]; then
 fi
 
 ### alias
-alias joxa="rlwrap joxa"
+if command -v joxa &>/dev/null; then
+    alias joxa="rlwrap joxa"
+fi
 
 ### elixir
-ELIXIR_HOME="$HOME/local/opt/elixir"
-if [ -d "$ELIXIR_HOME" ]; then
+if [[ -d "$HOME/local/opt/elixir" ]]; then
+    export ELIXIR_HOME="$HOME/local/opt/elixir"
     export PATH=$ELIXIR_HOME/bin:$PATH
 fi
 
 # add linux manpages
-export MANPATH="$HOME/local/share/man:$MANPATH"
+if [[ -d "$HOME/local/share/man" ]]; then
+    export MANPATH="$HOME/local/share/man:$MANPATH"
+fi
 
 # spacemacs
-alias spacemacs="HOME=~/pro/rep/spacemacs emacs"
+if [[ -d "$HOME/pro/rep/spacemacs" ]]; then
+    alias spacemacs="HOME=~/pro/rep/spacemacs emacs"
+fi
+
+
+# go
+if [[ -d "$HOME/local/opt/go" ]]; then
+    export GOROOT=$HOME/local/opt/go
+    export PATH="$GOROOT/bin:$PATH"
+fi
+# go module
+if command -v go &>/dev/null; then
+    export GOMODULEROOT=$HOME/go
+    export PATH="$GOMODULEROOT/bin:$PATH"
+fi
 
 # rust
-CARGO_HOME=$HOME/.cargo
-if [ -d "$CARGO_HOME" ]; then
+if [[ -d "$HOME/.cargo" ]]; then
+    export CARGO_HOME=$HOME/.cargo
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
-RUST_SRC_PATH=$HOME/pro/code/rustc-nightly/src
-if [ -d "$RUST_SRC_PATH" ]; then
-    export RUST_SRC_PATH=$RUST_SRC_PATH
+# rust source code
+if [[ -d "$HOME/pro/code/rustc-nightly/src" ]]; then
+    export RUST_SRC_PATH=$HOME/pro/code/rustc-nightly/src
 fi
+
+# avr-gcc
+# AVR_GCC_BIN=/usr/local/opt/avr-gcc@8/bin
+# if [ -d "$AVR_GCC_BIN" ]; then
+#     export PATH="$AVR_GCC_BIN:$PATH"
+# fi
+
+
+# for Mac OS X
+# Mountain Lion (version 10.8)
+# Lion (version 10.7)
+# and Sierra (version 10.12) above
+# function clean-dns {
+#     sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
+# }
+
+# for Mac OS X
+# El Capitan (version 10.11)
+# Mavericks (version 10.9)
+function clean-dns {
+    sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
+}
