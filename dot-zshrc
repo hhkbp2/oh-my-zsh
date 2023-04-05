@@ -41,9 +41,16 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp git gnu-utils history mercurial pip python rake svn tmux
-    virtualenv #virtualenvwrapper
-)
+plugins=(cp history gnu-utils)
+if type tmux > /dev/null; then plugins+=(tmux);	fi
+if type python > /dev/null; then plugins+=(python); fi
+if type virtualenv > /dev/null; then plugins+=(virtualenv); fi
+if type mkvirtualenv > /dev/null; then plugins+=(virtualenvwrapper); fi
+if type ruby > /dev/null; then plugins+=(ruby); fi
+if type rake > /dev/null; then plugins+=(rake); fi
+if type git > /dev/null; then plugins+=(git); fi
+if type hg > /dev/null; then plugins+=(mercurial); fi
+if type svn > /dev/null; then plugins+=(svn); fi
 
 source $ZSH/oh-my-zsh.sh
 
