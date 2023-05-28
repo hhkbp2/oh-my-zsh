@@ -7,6 +7,5 @@ setopt NO_BEEP
 
 # variables
 
-PRO=$HOME/pro
+PRO=$HOME/dev/pro
 : ~PRO
-
