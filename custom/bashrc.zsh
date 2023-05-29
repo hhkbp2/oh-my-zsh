@@ -34,7 +34,7 @@ typeset -U path
 
 # add my local bin
 if [ -d "${MY_LOCAL_DIR}/bin" ]; then
-    PATH=$PATH:${MY_LOCAL_DIR}/bin
+    PATH=${MY_LOCAL_DIR}/bin:$PATH
 fi
 
 # source helper functions
@@ -159,30 +159,3 @@ export HGEDITOR='vim'
 alias svnwhat="svn st | grep -v -e '^?'"
 alias svnview='svn diff | less'
 export SVN_EDITOR='vim'
-
-## Linux
-os_type=$(uname -s)
-if [[ "${os_type}" = "Linux" ]]; then
-    # texlive
-    if [[ -d "${MY_DIR}/local/opt/texlive/bin/x86_64-linux" ]]; then
-        export PATH="${MY_DIR}/local/opt/texlive/bin/x86_64-linux:$PATH"
-    fi
-fi
-
-## macOS
-if [[ "${os_type}" = "Darwin" ]]; then
-    # for Mac OS X
-    # Mountain Lion (version 10.8)
-    # Lion (version 10.7)
-    # and Sierra (version 10.12) above
-    function clean-dns {
-        sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
-    }
-
-    # for Mac OS X
-    # El Capitan (version 10.11)
-    # Mavericks (version 10.9)
-    # function clean-dns {
-    #     sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
-    # }
-fi
