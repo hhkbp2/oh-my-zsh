@@ -90,18 +90,13 @@ if [[ -d "${MY_DIR}/local/opt/go" ]]; then
     export PATH="$GOROOT/bin:$PATH"
 fi
 # Go module
-if [[ -d "${MY_DIR}/go" ]]; then
-    # only add portable go tools' path into PATH
-    # with modifying GOPATH since go modules are unportable
-    export PATH="${MY_DIR}/go/bin:$PATH"
+if [[ -d "${HOME}/go" ]]; then
+    export PATH="${HOME}/go/bin:$PATH"
 fi
 
 ## Rust
-if [[ -d "${MY_DIR}/.cargo" ]]; then
-    # only add portalbe rust tools' path into PATH
-    # without modifying CARGO_HOME or RUSTUP_HOME since cargo packages and
-    # rust toolchains are unportable
-    export PATH="${MY_DIR}/.cargo/bin:$PATH"
+if [[ -d "${HOME}/.cargo" ]]; then
+    export PATH="${HOME}/.cargo/bin:$PATH"
 fi
 # Rust source code
 if [[ -d "${MY_DIR}/pro/code/rustc-nightly/src" ]]; then
