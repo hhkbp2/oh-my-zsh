@@ -51,6 +51,11 @@ if type rake > /dev/null; then plugins+=(rake); fi
 if type git > /dev/null; then plugins+=(git); fi
 if type hg > /dev/null; then plugins+=(mercurial); fi
 if type svn > /dev/null; then plugins+=(svn); fi
+# others
+plugins+=(
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
