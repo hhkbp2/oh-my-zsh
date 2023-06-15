@@ -20,7 +20,7 @@ if [[ "${os_type}" = "Linux" ]]; then
                 export PATH="${MY_DIR}/local/opt/texlive/bin/x86_64-linux:$PATH"
             fi
             ;;
-        arch)
+        arch | endeavouros)
             http_proxy_on() {
                 export http_proxy=http://192.168.229.1:7890
                 export https_proxy=http://192.168.229.1:7890

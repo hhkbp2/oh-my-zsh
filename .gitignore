@@ -8,3 +8,5 @@ custom/example.zsh
 cache/
 themes/powerlevel9k
 themes/powerlevel10k
+custom/plugins/zsh-autosuggestions
+custom/plugins/zsh-syntax-highlighting
