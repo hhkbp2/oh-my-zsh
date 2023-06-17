@@ -23,7 +23,7 @@ export TMPDIR=/tmp
 export EDITOR=vim
 
 # alias settings
-alias em='env LC_CTYPE=zh_CN.utf8 emacs -nw --debug-init'
+alias em='env LC_CTYPE=zh_CN.UTF-8 emacs -nw --debug-init'
 
 # set my local directory
 MY_DIR=${HOME}/dev
