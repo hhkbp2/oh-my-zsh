@@ -6,8 +6,8 @@ if [[ "${os_type}" = "Linux" ]]; then
     case $ID in
         debian)
             http_proxy_on() {
-                export http_proxy=http://192.168.56.1:7890
-                export https_proxy=http://192.168.56.1:7890
+                export http_proxy=http://192.168.56.1:7897
+                export https_proxy=http://192.168.56.1:7897
             }
 
             http_proxy_off() {
@@ -22,8 +22,8 @@ if [[ "${os_type}" = "Linux" ]]; then
             ;;
         arch | endeavouros)
             http_proxy_on() {
-                export http_proxy=http://localhost:7890
-                export https_proxy=http://localhost:7890
+                export http_proxy=http://localhost:7897
+                export https_proxy=http://localhost:7897
             }
 
             http_proxy_off() {

@@ -68,8 +68,8 @@ if [ -d "${APUE_LIB}" ]; then
 fi
 
 ## Java
-if [ -z "${JAVA_HOME}" ] && [ -d "/usr/lib/jvm/java-7-oracle" ]; then
-    export JAVA_HOME=/usr/lib/jvm/java-7-oracle
+if [ -z "${JAVA_HOME}" ] && [ -d "/usr/lib/jvm/default" ]; then
+    export JAVA_HOME=/usr/lib/jvm/default
     export PATH=$JAVA_HOME/bin:$PATH
     if [ -z "$CLASSPATH" ]; then
         export CLASSPATH=.:$JAVA_HOME/lib/jt.jar:$JAVA_HOME/lib/tools.jar
