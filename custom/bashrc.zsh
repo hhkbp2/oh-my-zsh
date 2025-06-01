@@ -105,20 +105,6 @@ if [[ -d "${DEV_DIR}/pro/code/rustc-nightly/src" ]]; then
     export RUST_SRC_PATH=${DEV_DIR}/pro/code/rustc-nightly/src
 fi
 
-## Python
-# add module path for python
-if [ -d "${DEV_LOCAL_DIR}/lib/python2.7/site-packages/" ]; then
-    if [ -z "$PYTHONPATH" ]; then
-        export PYTHONPATH=${DEV_LOCAL_DIR}/lib/python2.7/site-packages/
-    else
-        export PYTHONPATH=${DEV_LOCAL_DIR}/lib/python2.7/site-packages/:$PYTHONPATH
-    fi
-fi
-# python startup script
-if [ -z "$PYTHONSTARTUP" ] && [ -f "${HOME}/.pythonstartup" ]; then
-    export PYTHONSTARTUP=${HOME}/.pythonstartup
-fi
-
 ## Ruby
 rbenv_bin=${HOME}/.rbenv/bin
 if [ -d ${rbenv_bin} ]; then
